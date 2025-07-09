@@ -67,18 +67,106 @@ pnpm start
 
 O servidor estará rodando em `http://localhost:3333`
 
-## 📡 Endpoints
+## 📡 API Documentation
 
 ### Health Check
+
+Verifica se a API está funcionando corretamente.
 
 ```http
 GET /health
 ```
 
-### Listar Salas
+**Response:**
+```json
+{
+  "status": "OK"
+}
+```
+
+### Rooms
+
+#### Listar Salas
+
+Retorna todas as salas com contagem de perguntas.
 
 ```http
 GET /rooms
+```
+
+**Response:**
+```json
+[
+  {
+    "id": "uuid",
+    "name": "Room Name",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "questions": 5
+  }
+]
+```
+
+#### Criar Sala
+
+Cria uma nova sala.
+
+```http
+POST /rooms
+Content-Type: application/json
+
+{
+  "name": "Room Name",
+  "description": "Room Description" // opcional
+}
+```
+
+**Response:**
+```json
+{
+  "roomId": "uuid"
+}
+```
+
+### Questions
+
+#### Listar Perguntas de uma Sala
+
+Retorna todas as perguntas de uma sala específica.
+
+```http
+GET /rooms/:roomId/questions
+```
+
+**Response:**
+```json
+[
+  {
+    "id": "uuid",
+    "question": "Question text",
+    "answer": "Answer text or null",
+    "createdAt": "2025-01-01T00:00:00.000Z"
+  }
+]
+```
+
+#### Criar Pergunta
+
+Cria uma nova pergunta em uma sala.
+
+```http
+POST /rooms/:roomId/questions
+Content-Type: application/json
+
+{
+  "questions": "Question text"
+}
+```
+
+**Response:**
+```json
+{
+  "questionId": "uuid"
+}
 ```
 
 ## 📁 Estrutura do Projeto
