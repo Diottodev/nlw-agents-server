@@ -40,5 +40,5 @@ POST {{baseUrl}}/rooms/{{roomId}}/questions
 Content-Type: application/json
 
 {
-  "questions": "Question text"
+  "question": "O que é o Next.js?"
 }
